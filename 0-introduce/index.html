@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>介绍</title>
+</head>
+<body>
+  <h1>介绍</h1>
+
+  <h2>声明式渲染</h2>
+  <div id="app1">{{message}}</div>
+
+  <div id="app2">
+    <span v-bind:title="message">将鼠标悬浮一会儿可以看到提示</span>
+  </div>
+
+  <h2>条件与循环</h2>
+
+  <div id="app3">
+    <p v-if="seen">隐藏与显示</p>
+  </div>
+
+  <div id="app4">
+    <ol>
+      <li v-for="todo in todos">{{todo.text}}</li>
+    </ol>
+  </div>
+
+  <h2>处理用户输入</h2>
+  <div id="app5">
+    <p>{{message}}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+  </div>
+
+  <div id="app6">
+    <p>{{message}}</p>
+    <input type="text" v-model="message" v-once>
+  </div>
+
+  <h2>用组件构建（应用）</h2>
+  <div id="app7">
+    <ol>
+      <todo-item v-for="todo in todos" :item="todo"></todo-item>
+    </ol>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+  Vue.component('todo-item', {
+    template: '<li>{{item}}</li>',
+    props: ['item']
+  });
+  var app7 = new Vue({
+    el: '#app7',
+    data: {
+      todos: [
+        'do something',
+        'test the demo',
+        'review the code'
+      ]
+    }
+  });
+  var app6 = new Vue({
+    el: '#app6',
+    data: {
+      message: 'Hello'
+    }
+  });
+  var app5 = new Vue({
+    el: '#app5',
+    data: {
+      message: 'Hello world'
+    },
+    methods: {
+      reverseMessage: function() {
+        this.message = this.message.split('').reverse().join('');
+      }
+    }
+  });
+  var app4 = new Vue({
+    el: '#app4',
+    data: {
+      todos: [
+        {text: 'read some books'},
+        {text: 'drop the trash'},
+        {text: 'do some dishing'}
+      ]
+    }
+  });
+  var app3 = new Vue({
+    el: '#app3',
+    data: {
+      seen: true
+    }
+  });
+  var app2 = new Vue({
+    el: '#app2',
+    data: {
+      message: '悬浮信息'
+    }
+  });
+
+  var app1 = new Vue({
+    el: '#app1',
+    data: {
+      message: 'Hello Vue.js！数据绑定最常见形式：使用Mustache语法(双大括号)'
+    }
+  });
+  </script>
+</body>
+</html>

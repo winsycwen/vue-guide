@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单控件绑定</title>
+</head>
+<body>
+	<h1>表单控件绑定</h1>
+	<h2>基础用法</h2>
+	<p>v-model本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并处理一些极端的栗子。</p>
+	<h3>文本</h3>
+	<div id="app1">
+		<input v-model.trim="message" placeholder="edit me" type="text">
+		<p>Message is: {{message}}</p>
+	</div>
+	
+	<h3>多行文本</h3>
+	<h3>复选框</h3>
+	<h3>单选按钮</h3>
+	<h3>选择列表</h3>
+	
+	<h2>绑定value</h2>
+	<h3>复选框</h3>
+	
+	<h2>修饰符</h2>
+	<p>.lazy,.trim,.number等</p>
+	
+	<h2>v-model与组件</h2>
+	<script src="../vue.js"></script>
+	<script>
+	var app1 = new Vue({
+		el: '#app1',
+		data: {
+			message: 'a'
+		}
+	});
+	</script>
+</body>
+</html>

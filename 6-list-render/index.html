@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>列表渲染</title>
+</head>
+<body>
+	<h1>列表渲染</h1>
+	<h2>v-for</h2>
+	<h3>基本用法</h3>
+	<div id="app1">
+		<ul v-for="todo in todos">
+			<li>{{todo.text}}</li>
+		</ul>
+	</div>
+	
+	<div id="app2">
+		<ul>
+			<li v-for="(item, index) in items">{{ parentMessage }} - {{ index }} - {{ item.message }}</li>
+		</ul>
+	</div>
+	<p>也可以用of替代in作为分隔符</p>
+	
+	<h3>Template v-for</h3>
+	<ul id="app3">
+		<template v-for="item in items">
+			<li>{{item.msg}}</li>
+			<li class="divider"></li>
+		</template>
+	</ul>
+	
+	<h3>对象迭代v-for</h3>
+	<ul id="app4">
+		<li v-for="value of object">{{value}}</li>
+	</ul>
+	
+	<h3>整数迭代v-for</h3>
+	<div id="app5">
+		<span v-for="n in 5">{{n}}</span>
+	</div>
+	
+	<h3>组件和v-for</h3>
+	
+	<h2>key</h2>
+	
+	<h2>数组更新检测</h2>
+	<h3>变异方法</h3>
+	<ul id="app6">
+		<li v-for="item in items">{{item}}</li>
+	</ul>
+	<h3>重塑数组</h3>
+	<p>变异方法mutation method，顾名思义，会改变被这些方法调用的原始数组。</p>
+	<p>非变异方法：filter\concat\slice</p>
+	
+	<h3>显示过滤/排序结果</h3>
+	<script src="../vue.js"></script>
+	<script>
+	var app6 = new Vue({
+		el: '#app6',
+		data: {
+			items: ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse']
+		}
+	});
+	var app5 = new Vue({
+		el: '#app5'
+	});
+	var app4 = new Vue({
+		el: '#app4',
+		data: {
+			object: {
+				firsName: 'John',
+				lastName: '20'
+			}
+		}
+	});
+	var app3 = new Vue({
+		el: '#app3',
+		data: {
+			items: [
+				{msg: 'a'},
+				{msg: 'b'}
+			]
+		}
+	});
+	var app2 = new Vue({
+		el: '#app2',
+		data: {
+			parentMessage: 'Parent',
+			items: [
+				{message: 'Foo'},
+				{message: 'Bar'}
+			]
+		}
+	});
+	var app1 = new Vue({
+		el: '#app1',
+		data: {
+			todos: [
+				{text: 'aa'},
+				{text: 'bb'},
+				{text: 'cc'}
+			]
+		}
+	});
+	</script>
+</body>
+</html>

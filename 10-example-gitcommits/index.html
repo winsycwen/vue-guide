@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取github仓库提交记录</title>
+</head>
+<body>
+	<div class="wrapper">
+		<h1>获取github仓库提交记录</h1>
+		
+		<div class="commit-wrapper">
+			<ul>
+				<li v-for="item in commits">
+					<p>Commits on {{item["time"] | format}}</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="../vue.js"></script>
+	<script src="index.js"></script>
+
+</body>
+</html>

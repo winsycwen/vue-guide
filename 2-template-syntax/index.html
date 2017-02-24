@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板语法</title>
+</head>
+<body>
+	<h1>模板语法</h1>
+	
+	<h2>插值</h2>
+
+	<h3>文本</h3>
+	<div id="app1">{{message}}</div>
+	
+	<h3>属性</h3>
+	<div id="app2">
+		<div v-bind:id="dynamicId"></div>
+	</div>
+	
+	<h3>使用javascript表达式</h3>
+	<div id="app3">{{number + 1}}</div>
+	
+	<h2>指令</h2>
+	
+	<h3>参数</h3>
+	<a v-bind:href="url"></a>
+	<a v-on:click="doSomething"></a>
+	
+	<h3>修饰符</h3>
+	<form v-on:submit.prevent="onSubmit"></form>
+	
+	<h2>Filter</h2>
+	
+	<h3>过滤器</h3>
+	<script src="../vue.js"></script>
+	<script>
+	var app3 = new Vue({
+		el: '#app3',
+		data: {
+			number: 1
+		}
+	});
+	var app2 = new Vue({
+		el: '#app2',
+		data: {
+			dynamicId: 'aaa'
+		}
+	});
+	var app1 = new Vue({
+		el: '#app1',
+		data: {
+			message: 'hello'
+		}
+	});
+	</script>
+</body>
+</html>

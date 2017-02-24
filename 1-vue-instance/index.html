@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue实例</title>
+</head>
+<body>
+  <h1>Vue实例</h1>
+
+  <h2>构造器</h2>
+  <p>在实例化Vue时，需要传入一个选项对象，它可以包含数据、模板、挂载元素、方法、生命周期钩子等选项。</p>
+  <h2>属性与方法</h2>
+  <div id="app1">{{text}}</div>
+  <h2>实例生命周期</h2>
+  <p>实例需要配置数据观测、编译模板、挂载实例到DOM、更新DOM</p>
+  <h2>生命周期图示</h2>
+  <p><b>生命周期钩子</b></p>
+
+  <script src="../vue.js"></script>
+  <script>
+  var message = {text: 'Vue.js会暴露一些实例属性与方法，它们都有前缀$'};
+  var app1 = new Vue({
+    el: '#app1',
+    data: message,
+    created: function() {
+      console.log(this.text);
+    }
+  });
+  </script>
+</body>
+</html>

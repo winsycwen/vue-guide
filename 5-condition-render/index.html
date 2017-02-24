@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>条件渲染</title>
+</head>
+<body>
+	<h1>条件渲染</h1>
+	<h2>v-if</h2>
+	<div id="app1">
+		<p v-if="ok">yes</p>
+		<p v-else>no</p>
+	</div>
+	
+	<h3>&lt;template&gt;中v-if条件组</h3>
+	<div id="app2">
+		<template v-if="ok">
+			<p>ok</p>
+			<p>测试</p>
+		</template>
+		<template v-else>
+			<p>no</p>
+		</template>
+	</div>
+	
+	<h3>v-else</h3>
+	<h3>v-else-if</h3>
+	<h3>使用key控制元素的可重用</h3>
+	<h2>v-show</h2>
+	<p>v-show不支持template语法</p>
+	<h2>v-if vs v-show</h2>
+	<script src="../vue.js"></script>
+	<script>
+	var app2 = new Vue({
+		el: '#app2',
+		data: {
+			ok: true
+		}
+	});
+	var app1 = new Vue({
+		el: '#app1',
+		data: {
+			ok: true
+		}
+	});
+	</script>
+</body>
+</html>

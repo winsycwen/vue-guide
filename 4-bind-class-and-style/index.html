@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Class与Style绑定</title>
+	<style>
+		.red {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<h1>Class与Style绑定</h1>
+	
+	<h2>绑定HTML Class</h2>
+	<h3>对象语法</h3>
+	<div id="app1">
+		<div v-bind:class="{red: isRed}"></div>
+	</div>
+	
+	<div id="app2">
+		<div v-bind:class="classObject"></div>
+	</div>
+	
+	<h3>数组语法</h3>
+	<h3>用在组件上</h3>
+	
+	<h2>绑定内联样式</h2>
+	<h3>对象语法</h3>
+	<h3>数组语法</h3>
+	<h3>自动添加前缀</h3>
+	<script src="../vue.js"></script>
+	<script>
+	var app2 = new Vue({
+		el: '#app2',
+		data: {
+			classObject: {
+				red: true
+			}
+		}
+	});
+	var app1 = new Vue({
+		el: '#app1',
+		data: {
+			isRed: true
+		}
+	});
+	</script>
+</body>
+</html>

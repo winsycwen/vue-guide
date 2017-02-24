@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算属性</title>
+</head>
+<body>
+	<h1>计算属性</h1>
+	<h2>计算属性</h2>
+	
+	<h3>基础例子</h3>
+	<div id="app1">
+		<p>Original message: {{message}}</p>
+		<p>Computed reversed message: {{reverseMessage}}</p>
+	</div>
+	
+	<h3>计算缓存vsMethods</h3>
+	<p>计算属性是基于它的依赖缓存。</p>
+	<div id="app2">
+		<p>Original message: {{message}}</p>
+		<p>Computed reversed message: {{reverseMessage()}}</p>
+	</div>
+	
+	<h3>计算属性vsWatched Property</h3>
+	<p>vue.js提供了一个方法$watch,它用于观察vue实例上的数据变动。</p>
+	<div id="app3">{{fullName}}</div>
+	
+	<h3>计算setter</h3>
+	<p>计算属性默认只有getter</p>
+	<div id="app4">{{fullName}}</div>
+	
+	<h2>观察Watchers</h2>
+	
+	<script src="../vue.js"></script>
+	<script>
+	var app4 = new Vue({
+		el: '#app4',
+		data: {
+			firstName: 'SiWen',
+			lastName: 'Yan'
+		},
+		computed: {
+			fullName: {
+				get: function() {
+					return this.firstName + ' ' + this.lastName;
+				},
+				set: function(val) {
+					var arr = val.split(' ');
+					this.firstName = arr[0];
+					this.lastName = arr[1];
+				}
+			}
+		}
+	});
+	var app3 = new Vue({
+		el: '#app3',
+		data: {
+			fullName: 'SiWen Yan',
+			firstName: 'SiWen',
+			lastName: 'Yan'
+		},
+		watch: {
+			firstName: function(val) {
+				this.fullName = val + this.lastName;
+			},
+			lastName: function(val) {
+				this.fullName = this.firstName + val;
+			}
+		}
+	});
+	var app2 = new Vue({
+		el: '#app2',
+		data: {
+			message: 'hello'
+		},
+		methods: {
+			reverseMessage: function() {
+				return this.message.split("").reverse().join("");
+			}
+		}
+	});
+	var app1 = new Vue({
+		el: '#app1',
+		data: {
+			message: 'hello'
+		},
+		computed: {
+			reverseMessage: function() {
+				return this.message.split("").reverse().join("");
+			}
+		}
+	});
+	</script>
+</body>
+</html>
