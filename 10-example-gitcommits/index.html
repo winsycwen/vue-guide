@@ -8,10 +8,11 @@
 	<div class="wrapper">
 		<h1>获取github仓库提交记录</h1>
 		
-		<div class="commit-wrapper">
+		<div id="demo">
 			<ul>
 				<li v-for="item in commits">
 					<p>Commits on {{item["time"] | format}}</p>
+					<p>{{item["msg"]}}</p>
 				</li>
 			</ul>
 		</div>
