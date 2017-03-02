@@ -9,9 +9,17 @@
 		<h1>获取github仓库提交记录</h1>
 		
 		<div id="demo">
+			<div class="swtich-branch">
+				<template v-for="branch in branches">
+					<input type="radio" name="branch" 
+						:value="branch"
+						v-model="currentBranch"
+					>{{branch}}
+				</template>
+			</div>
 			<ul>
 				<li v-for="item in commits">
-					<p>Commits on {{item["time"] | format}}</p>
+					<p><span>{{item['sha'].slice(0, 7) }}</span>&nbsp;Commits on {{item["time"] | format}}</p>
 					<p>{{item["msg"]}}</p>
 				</li>
 			</ul>
