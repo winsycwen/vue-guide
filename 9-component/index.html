@@ -10,62 +10,106 @@
 	<h1>组件</h1>
 	<h2>什么是组件</h2>
 	<p>组件就是封装可重用的代码。</p>
+	<hr>
 
 	<h2>使用组件</h2>
 	<h3>注册</h3>
+	<code>
+		new Vue({
+			el: '#some-element'
+		});
+		Vue.component('my-component', {
+			// 选项
+		});
+	</code>
+
+	<div id="example1">
+		<my-component></my-component>
+	</div>
 
 	<h3>局部组件</h3>
 
+	<code>
+		// 局部组件
+		var Child = {
+		  template: '<div>A custom component!</div>'
+		};
+		var example2 = new Vue({
+		  el: '#example2',
+		  components: {
+		    'my-component': Child
+		  }
+		});
+	</code>
+
+	<div id="example2">
+		<my-component></my-component>
+	</div>
+
 	<h3>DOM模板解析说明</h3>
 
+	<div id="example3"></div>
+
+	<script type="text/x-template" id="my-row-template">
+		<table>
+			<tbody>
+				<tr>AAAAA</tr>
+			</tbody>
+		</table>
+	</script>
+
 	<h3>data必须是函数</h3>
+	<p>三个组件共享了同一个data</p>
+	<div id="example4">
+		<simple-counter></simple-counter>
+		<simple-counter></simple-counter>
+		<simple-counter></simple-counter>
+	</div>
 
 	<h3>构成组件</h3>
 	<p>父子组件的关系可总结为：props down, events up。父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息。</p>
+	<hr>
 
 	<h2>Prop</h2>
 	<h3>使用Pro传递数据</h3>
+	<div id="example5">
+		<child v-bind:message="msg" my-message="Hello!"></child>
+	</div>
+
 	<h3>camelCase vs kebab-case</h3>
 	<h3>动态Prop</h3>
 
+	<div id="example6">
+		<input v-model="parentMsg">
+		<child v-bind:my-message="parentMsg"></child>
+	</div>
+
 	<h3>字面量语法vs动态语法</h3>
+
 	<h3>单向数据流</h3>
+	<div id="example7">
+		<child v-bind:message-obj="parentMsgObj"></child>
+		<span>{{parentMsgObj.name}}</span>
+	</div>
+
 	<h3>Prop验证</h3>
+	<hr>
 
 	<h2>自定义事件</h2>
+
+	<h3>使用v-on绑定自定义事件</h3>
 	<div id="counter-event-example">
 		<p>{{ total }}</p>
 		<button-counter v-on:increment="incrementTotal"></button-counter>
 		<button-counter v-on:increment="incrementTotal"></button-counter>
 	</div>
+
+	<h3>使用自定义事件的表单输入组件</h3>
+	<div id="example8">
+		<currency-input v-model="value"></currency-input>
+	</div>
 	<script src="../vue.js"></script>
-	<script>
-		Vue.component('button-counter', {
-			template: '<button v-on:click="test">{{ counter }}</button>',
-			data: function () {
-				return {
-					counter: 0
-				}
-			},
-			methods: {
-				test: function () {
-					this.counter += 1
-					this.$emit('increment')
-				}
-			},
-		});
-		new Vue({
-			el: '#counter-event-example',
-			data: {
-				total: 0
-			},
-			methods: {
-				incrementTotal: function () {
-					this.total += 1
-				}
-			}
-		});
-	</script>
+	<script src="./index.js"></script>
 </body>
 
 </html>
