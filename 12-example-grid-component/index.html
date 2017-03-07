@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>网格组件Example</title>
+  <style>
+  .down:after {
+    display: inline-block;
+    content: '';
+    vertical-align: middle;
+    width: 0;
+    height: 0;
+    border-top: 6px solid green;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+  }
+  .up:after {
+    display: inline-block;
+    content: '';
+    vertical-align: middle;
+    width: 0;
+    height: 0;
+    border-bottom: 6px solid green;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+  }
+  </style>
+</head>
+<body>
+  <div id="demo">
+    <form>
+      <label>Search</label>
+      <input type="text" name="keyword" @input="search">
+    </form>
+    <grid-component :list="currentList" @sort="gridSort"></grid-component>
+  </div>
+
+  <script type="text/x-template" id="grid-component">
+    <table border='1'>
+      <thead>
+        <tr>
+          <th class="down" @click="sort">Name</th>
+          <th class="down" @click="sort">Power</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr v-for="item in list">
+          <td>{{ item.name }}</td>
+          <td>{{ item.power }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </script>
+  <script src="../vue.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>
