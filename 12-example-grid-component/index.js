@@ -46,7 +46,6 @@
         }
       },
       gridSort: function(e) {
-        console.log(e);
         if(this.currentList) {
           this.currentList.reverse();
         }
