@@ -108,6 +108,141 @@
 	<div id="example8">
 		<currency-input v-model="value"></currency-input>
 	</div>
+	<hr>
+
+	<h2>使用Slot分发内容</h2>
+	<h3>编译作用域</h3>
+	<p>分发内容是在父组件作用域内编译。</p>
+	<div id="example9">
+		<child-component v-show="some"></child-component>
+	</div>
+
+	<h3>单个Slot</h3>
+	<div id="example10">
+		<h1>我是父组件的标题</h1>
+		<my-component>
+			<p>这是一些初始内容</p>
+			<p>这是更多的初始内容</p>
+		</my-component>
+	</div>
+	<script type="text/x-template" id="example10-child-component">
+	<div>
+		<h2>我是子组件的标题</h2>
+		<slot>只有在没有要分发的内容时才会显示。</slot>
+	</div>
+	</script>
+	
+	<h3>具名Slot</h3>
+	<div id="example11">
+		<app-layout>
+			<h1 slot="header">这里可能是一个页面标题</h1>
+			<p>主要内容的一个段落。</p>
+			<p>另一个主要段落。</p>
+			<p slot="footer">这里有一些联系信息</p>
+		</app-layout>
+	</div>
+	<script type="text/x-template" id="example11-child-component">
+		<div class="container">
+			<header>
+				<slot name="header"></slot>
+			</header>
+			<main>
+				<slot></slot>
+			</main>
+			<footer>
+				<slot name="footer"></slot>
+			</footer>
+		</div>
+		</script>
+	<h3>作用域插槽</h3>
+	<div id="example12">
+		<div class="parent">
+			<child>
+				<template scope="test">
+					<span>Hello from parent</span>
+					<span>{{test.msg}}</span>
+				</template>
+			</child>
+		</div>
+	</div>
+	<script type="text/x-template" id="example12-child-component">
+		<div class="child">
+			<slot msg="Hello from child"></slot>
+		</div>
+	</script>
+
+	<div id="example13">
+		<my-awesome-list :items="items">
+			<template slot="item" scope="props">
+				<li class="my-fancy-item">{{props.text}}</li>
+			</template>
+		</my-awesome-list>
+	</div>
+	<script type="text/x-template" id="example13-child-component">
+	<ul>
+		<slot name="item" v-for="item in items" :text="item.text"></slot>
+	</ul>
+	</script>
+	<hr>
+
+	<h2>动态组件</h2>
+	<div id="example14">
+		<div class="wrapper">
+			<template v-for="item in list">
+				<input type="radio" name="type" :value="item" v-model="currentView">
+				<label>{{item}}</label>
+			</template>
+		</div>
+		<keep-alive>
+			<component v-bind:is="currentView"></component>
+		</keep-alive>
+	</div>
+	<script type="text/x-template" id="example14-template1">
+		<p>第一个home</p>
+	</script>
+	<script type="text/x-template" id="example14-template2">
+		<p>第二个posts</p>
+	</script>
+	<script type="text/x-template" id="example14-template3">
+		<p>第三个archive</p>
+	</script>
+	<h3>keep-alive</h3>
+	<hr>
+
+	<h2>杂项</h2>
+	<h3>编写可复用组件</h3>
+
+	<h3>子组件索引</h3>
+	<h3>异步组件</h3>
+	<h3>组件命名约定</h3>
+	<p>当注册组件（或者 props）时，可以使用 kebab-case ，camelCase ，或 TitleCase 。Vue 不关心这个。</p>
+	<p>在 HTML 模版中，请使用 kebab-case 形式</p>
+	<h3>递归组件</h3>
+	<h3>Circular References Between</h3>
+	<div id="example16">
+		<p>
+			<span>{{ folder.name }}</span>
+			<tree-folder-contents :children="folder.children"/>
+		</p>
+	</div>
+	<ul>
+		<li v-for="child in children">
+			<tree-folder v-if="child.children" :folder="child"/>
+			<span v-else>{{child.name}}</span>
+		</li>
+	</ul>
+	<h3>Components</h3>
+	<h3>内联模板</h3>
+	<div id="example15">
+		<my-component inline-template>
+			<div>
+				<p>These are compiled as the component's own template.</p>
+				<p>Not parent's transclusion content.</p>
+			</div>
+		</my-component>
+	</div>
+	<h3>X-Templates</h3>
+	<h3>使用v-once的低级静态组件</h3>
 	<script src="../vue.js"></script>
 	<script src="./index.js"></script>
 </body>

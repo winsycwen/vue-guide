@@ -164,3 +164,109 @@ var example3 = new Vue({
     }
   })
 })();
+
+// 使用Slot分发内容-编译作用域
+!(function() {
+  var Child = {
+    props: ['some'],
+    template: '<span v-show="some">Hello world!</span>'
+  };
+  new Vue({
+    el: '#example9',
+    data: {
+      some: true
+    },
+    components:{
+      'child-component': Child
+    }
+  })
+})();
+
+// 使用Slot分发内容-单个Slot
+!(function() {
+  var Child = {
+    template: '#example10-child-component'
+  };
+  new Vue({
+    el: '#example10',
+    components: {
+      'my-component': Child
+    }
+  });
+})();
+
+// 使用Slot分发内容-具名Slot
+!(function() {
+  var Child = {
+    template: '#example11-child-component'
+  };
+  new Vue({
+    el: '#example11',
+    components: {
+      'app-layout': Child
+    }
+  });
+})();
+
+// 使用Slot分发内容-作用域插槽
+!(function() {
+  var Child = {
+    template: '#example12-child-component'
+  };
+  new Vue({
+    el: '#example12',
+    components: {
+      'child': Child
+    }
+  });
+})();
+
+// 使用Slot分发内容-作用域插槽
+!(function() {
+  var Child = {
+    props: ['items'],
+    template: '#example13-child-component'
+  };
+  new Vue({
+    el: '#example13',
+    data: {
+      items: [
+        {text: 'a'},
+        {text: 'b'},
+        {text: 'c'}
+      ]
+    },
+    components: {
+      'my-awesome-list': Child
+    }
+  });
+})();
+
+// 动态组件
+!(function() {
+  new Vue({
+    el: '#example14',
+    data: {
+      currentView: 'posts',
+      list: ['home', 'posts', 'archive']
+    },
+    components: {
+      home: {
+        template: '#example14-template1'
+      },
+      posts: {
+        template: '#example14-template2'
+      },
+      archive: {
+        template: '#example14-template3'
+      }
+    }
+  })
+})();
+
+// 杂项-内联模板
+!(function() {
+  new Vue({
+    el: '#example15'
+  });
+})();
